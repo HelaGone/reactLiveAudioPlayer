@@ -44,7 +44,6 @@ class App extends Component{
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log("did update");
     let track = prevState.radioUrl;
     if(track){
 
@@ -52,11 +51,17 @@ class App extends Component{
   }
 
   handlePlayback = (signal, live) => {
-    console.log("click");
-    this.setState({
-      signal: signal,
-      isLive: live
-    });
+
+    if(live != this.state.isLive){
+      this.player.pause();
+      this.player.src = signal;
+      this.setState({
+        signal: signal,
+        isLive: live,
+        playerStatus: "playing" 
+      });
+      this.player.play();
+    }
     return true;
   }
 

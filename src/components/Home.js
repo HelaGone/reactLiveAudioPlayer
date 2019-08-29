@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import playButton from '../images/play_nofm.svg';
 import pauseButton from '../images/pause_nofm.svg';
+import localAudio from '../assets/sheppard.m4a';
 
 export default class Home extends Component{
 	
@@ -34,14 +35,16 @@ export default class Home extends Component{
 								<img src={btnPlayback} alt="Play Pause button" />
 							</button>
 						</picture>
+
 						<ul className="signal_switch">
 							<li className={isLive ? 'signal_item signal_selected' : 'signal_item'}>
 								<button onClick={ () => playback("http://s2.voscast.com:8162/;&type=mp3", true) }>EN VIVO</button>
 							</li>
 							<li className={isLive ? 'signal_item' : 'signal_item signal_selected'}>
-								<button onClick={ () => playback("https://example.com", false) } >ARCHIVO</button>
+								<button onClick={ () => playback(localAudio, false) } >ARCHIVO</button>
 							</li>
 						</ul>
+						
 						<ul className="social_buttons">
 							<li className="social_item">
 								<a href="https://www.facebook.com/todomenosmiedo/" title="Social button Facebook">
