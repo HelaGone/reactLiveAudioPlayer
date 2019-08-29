@@ -21,20 +21,22 @@ class App extends Component{
 
   componentDidMount(){
     console.log("did mount");
-
     //const radioUrl = "http://s2.voscast.com:8162/;&type=mp3";
-    const titleUrl = "http://localhost/~rizika/nofm-radio.com/wp-json/react/v2/radio/";
 
-    this.getRadioTitle(titleUrl);
+    setInterval(() => {this.getRadioTitle();}, 1000);
   }
 
-  getRadioTitle = (url) =>{
+  test = ()=>{
+    let count = 0;
+  }
+
+  getRadioTitle = (url = "http://localhost/~rizika/nofm-radio.com/wp-json/react/v2/radio/") =>{
     fetch(url)
     .then(response => response.json())
     .then(data=>{
       const {title} = data;
       this.setState({
-        signalTitle: title
+        signalTitle: title,
       });
       return title;
     })
@@ -76,7 +78,6 @@ class App extends Component{
   }
 
   render(){
-    console.log(this.state.signal);
     const {signalTitle, playback, controls, isLive, playerStatus} = this.state;
     return (
       <Fragment>
