@@ -27,5 +27,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@firebase/storage": "^0.3.11",
+    "firebase": "^6.6.0"
   }
 }

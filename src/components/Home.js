@@ -1,12 +1,11 @@
 import React, {Component, Fragment} from 'react';
 import playButton from '../images/play_nofm.svg';
 import pauseButton from '../images/pause_nofm.svg';
-import localAudio from '../assets/sheppard.m4a';
 
 export default class Home extends Component{
 	
 	render(){
-		const {title, playback, controls, isLive, playerStatus} = this.props;
+		const {title, playback, controls, isLive, playerStatus, playlist} = this.props;
 		let btnPlayback;
 		let fnPlayback;
 		switch(playerStatus){
@@ -41,7 +40,7 @@ export default class Home extends Component{
 								<button onClick={ () => playback("http://s2.voscast.com:8162/;&type=mp3", true) }>EN VIVO</button>
 							</li>
 							<li className={isLive ? 'signal_item' : 'signal_item signal_selected'}>
-								<button onClick={ () => playback(localAudio, false) } >ARCHIVO</button>
+								<button onClick={ () => playback(playlist, false) } >ARCHIVO</button>
 							</li>
 						</ul>
 						
