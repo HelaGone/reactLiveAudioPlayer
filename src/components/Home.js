@@ -5,17 +5,14 @@ import pauseButton from '../images/pause_nofm.svg';
 export default class Home extends Component{
 	
 	render(){
-		const {title, playback, controls, isLive, playerStatus, playlist} = this.props;
+		const {title, switchSignal, playerManager, isLive, playerStatus} = this.props;
 		let btnPlayback;
-		let fnPlayback;
 		switch(playerStatus){
 			case "stopped":
 				btnPlayback = playButton;
-				fnPlayback = controls.play;
 			break;
 			case "playing":
 				btnPlayback = pauseButton;
-				fnPlayback = controls.pause;
 			break;
 			default: btnPlayback = playButton;
 		}
@@ -30,17 +27,17 @@ export default class Home extends Component{
 					</figure>
 					<div className="bottom_wrapper">
 						<picture className="play_button" width="144px" height="144px">
-							<button onClick={fnPlayback}>
+							<button onClick={playerManager}>
 								<img src={btnPlayback} alt="Play Pause button" />
 							</button>
 						</picture>
 
 						<ul className="signal_switch">
 							<li className={isLive ? 'signal_item signal_selected' : 'signal_item'}>
-								<button onClick={ () => playback("http://s2.voscast.com:8162/;&type=mp3", true) }>EN VIVO</button>
+								<button onClick={ () => switchSignal(true) }>EN VIVO</button>
 							</li>
 							<li className={isLive ? 'signal_item' : 'signal_item signal_selected'}>
-								<button onClick={ () => playback(playlist, false) } >ARCHIVO</button>
+								<button onClick={ () => switchSignal(false) } >ARCHIVO</button>
 							</li>
 						</ul>
 						
