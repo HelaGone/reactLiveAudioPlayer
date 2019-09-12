@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import playButton from '../images/play_nofm.svg';
 import pauseButton from '../images/pause_nofm.svg';
+import logo_nofm from '../images/logo_blanco.png';
 
 export default class Home extends Component{
 	
@@ -20,7 +21,8 @@ export default class Home extends Component{
 			<Fragment>
 				<section className="section_wrapper">
 					<figure className="f_container">
-						<img src="http://localhost/~rizika/nofm-radio.com/wp-content/uploads/2019/07/nofm_logo_elipse.jpg" alt="Fondo de pantalla"/>
+						<img src={logo_nofm} alt="Fondo de pantalla"/>
+					{/*<img src={`${window.location.hostname}/wp-content/uploads/2019/07/nofm_logo_elipse.jpg`} alt="Fondo de pantalla"/>*/}
 						<figcaption className="f_caption">
 							<h1 className="f_title">{title}</h1>
 						</figcaption>
