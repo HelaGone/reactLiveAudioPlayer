@@ -12,7 +12,7 @@ class App extends Component{
     this.state = {
       signal: "http://s2.voscast.com:8162/;&type=mp3",
       isLive:true,
-      signalTitle:"",
+      signalTitle:"NoFM",
       playerStatus: "stopped",
       playerManager: this.playerManager,
       switchSignal: this.switchSignal,
@@ -21,7 +21,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    this.getRadioTitle();
+    //this.getRadioTitle();
     this.getArchiveFiles();
   }
 
@@ -39,7 +39,10 @@ class App extends Component{
       });
       return title;
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+      console.error("Error: ", err)
+      return "Failed"
+    });
   }
 
   componentDidUpdate(prevProps, prevState){
