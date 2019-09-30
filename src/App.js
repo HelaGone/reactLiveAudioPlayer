@@ -29,7 +29,7 @@ class App extends Component{
     console.log("test");
   }
 
-  getRadioTitle = (url = "http://localhost/~rizika/nofm-radio.com/wp-json/react/v2/radio/") =>{
+  getRadioTitle = (url = "https://nofm-radio.com/wp-json/react/v2/radio/") =>{
     fetch(url)
     .then(response => response.json())
     .then(data=>{
