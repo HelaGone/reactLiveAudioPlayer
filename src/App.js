@@ -21,7 +21,6 @@ class App extends Component{
   }
 
   componentDidMount(){
-    //this.getRadioTitle();
     this.getArchiveFiles();
   }
 
@@ -34,6 +33,7 @@ class App extends Component{
     .then(response => response.json())
     .then(data=>{
       const {title} = data;
+      console.log(title);
       this.setState({
         signalTitle: title,
       });
@@ -97,13 +97,14 @@ class App extends Component{
       });
     }else{
       const randomIndex = Math.floor( (Math.random() * this.state.archivo.length) + 0);
-      const patt = /([\w\d]{1,}\.mp3)/gm;
-      const songTitle = (this.state.archivo) ? this.state.archivo[randomIndex].match(patt) : null;
+      const patt = /([\w\d\D]{1,}\.mp3)/gm;
+      const dirtyTitle = (this.state.archivo) ? decodeURI(this.state.archivo[randomIndex]).match(patt)[0] : null;
+      const songTitle = dirtyTitle.replace("https://firebasestorage.googleapis.com/v0/b/nofmradio.appspot.com/o/", "");
       const onDemandTrack = this.state.archivo[randomIndex];
       this.setState({
         isLive: false,
         signal: onDemandTrack,
-        signalTitle: songTitle[0].replace(".mp3", '')
+        signalTitle: songTitle.replace(".mp3", '')
       });
     }
   }
