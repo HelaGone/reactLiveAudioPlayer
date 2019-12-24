@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import playButton from '../images/play_nofm.svg';
 import pauseButton from '../images/pause_nofm.svg';
 import nofmradio from '../images/player.jpg';
+import Title from './widgets/Title';
 
 export default class Home extends Component{
 
@@ -23,7 +24,9 @@ export default class Home extends Component{
 					<figure className="f_container">
 						<img src={nofmradio} alt="Fondo de pantalla"/>
 						<figcaption className="f_caption">
-							<h1 className="f_title">{title}</h1>
+						{
+							isLive ? (<Title />) : (<h1 className="f_title">{title}</h1>)
+						}
 						</figcaption>
 					</figure>
 					<div className="bottom_wrapper">

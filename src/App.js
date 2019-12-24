@@ -20,12 +20,7 @@ class App extends Component{
   }
 
   componentDidMount(){
-    this.getRadioTitle();
-
-    const timer = setInterval(()=>{
-      this.getRadioTitle();
-    }, 3000);
-
+    // this.getRadioTitle();
     this.getArchiveFiles();
   }
 
@@ -93,7 +88,7 @@ class App extends Component{
       playerStatus: "paused"
     });
     if(isLive){
-      this.getRadioTitle();
+      // this.getRadioTitle();
       this.setState({
         signal: "http://s2.voscast.com:8162/;&type=mp3",
         isLive: true
