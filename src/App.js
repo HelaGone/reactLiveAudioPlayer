@@ -21,6 +21,11 @@ class App extends Component{
 
   componentDidMount(){
     this.getRadioTitle();
+
+    const timer = setInterval(()=>{
+      this.getRadioTitle();
+    }, 3000);
+
     this.getArchiveFiles();
   }
 
@@ -33,7 +38,6 @@ class App extends Component{
     .then(response => response.json())
     .then(data=>{
       const {title} = data;
-      console.log(title);
       this.setState({
         signalTitle: title,
       });
@@ -63,7 +67,6 @@ class App extends Component{
 
         this.player.src = this.state.signal;
         this.player.play();
-
       }
     }
   }
@@ -142,18 +145,18 @@ class App extends Component{
 
   render(){
     const {signalTitle, isLive, playerStatus, playerManager, switchSignal} = this.state;
-    
+
     return (
       <Fragment>
         <header className="app_header">
-          <h1 className="app_title">TODO MENOS MIEDO</h1>
+          <h1 className="app_title"><a href="https://nofm-radio.com/">TODO MENOS MIEDO</a></h1>
           <audio ref={ref => this.player = ref}/>
         </header>
-        <Home 
-          title={signalTitle} 
-          switchSignal={switchSignal} 
-          playerManager={playerManager} 
-          isLive={isLive} 
+        <Home
+          title={signalTitle}
+          switchSignal={switchSignal}
+          playerManager={playerManager}
+          isLive={isLive}
           playerStatus={playerStatus} />
       </Fragment>
     );

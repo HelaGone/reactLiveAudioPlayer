@@ -4,7 +4,7 @@ import pauseButton from '../images/pause_nofm.svg';
 import nofmradio from '../images/player.jpg';
 
 export default class Home extends Component{
-	
+
 	render(){
 		const {title, switchSignal, playerManager, isLive, playerStatus} = this.props;
 		let btnPlayback;
@@ -38,10 +38,10 @@ export default class Home extends Component{
 								<button onClick={ () => switchSignal(true) }>EN VIVO</button>
 							</li>
 							<li className={isLive ? 'signal_item' : 'signal_item signal_selected'}>
-								<button onClick={ () => switchSignal(false) } >ARCHIVO</button>
+								<button onClick={ () => switchSignal(false) } >ARCHIVO SONORO</button>
 							</li>
 						</ul>
-						
+
 						<ul className="social_buttons">
 							<li className="social_item">
 								<a href="https://www.facebook.com/todomenosmiedo/" title="Social button Facebook">

@@ -7,6 +7,7 @@
   #000a12 - dark
   #ffffff - white
 */
+a{text-decoration: none;color:inherit;}
 .app_header{background-color: #000a12;color:#ff0000;}
 .app_header .app_title{font-weight: 700;font-size:24px;text-align: center;padding: 8px 16px;font-family: 'Inconsolata', monospace;}
 
@@ -31,4 +32,3 @@
 @media screen and (min-width:360px){
 	.f_container .f_caption{padding:24px 0;}
 }
-
