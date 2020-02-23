@@ -7,7 +7,7 @@ import Title from './widgets/Title';
 export default class Home extends Component{
 
 	render(){
-		const {title, switchSignal, playerManager, isLive, playerStatus} = this.props;
+		const {title, switchSignal, playerManager, isLive, playerStatus, fastForward, rewind} = this.props;
 		let btnPlayback;
 		switch(playerStatus){
 			case "stopped":
@@ -24,16 +24,22 @@ export default class Home extends Component{
 					<figure className="f_container">
 						<img src={nofmradio} alt="Fondo de pantalla"/>
 						<figcaption className="f_caption">
-						{
-							isLive ? (<Title />) : (<h1 className="f_title">{title}</h1>)
-						}
+							{ isLive ? (<Title />) : (<h1 className="f_title">{title}</h1>) }
 						</figcaption>
 					</figure>
 					<div className="bottom_wrapper">
+						<picture className="rwd_button" width="144" height="144">
+							<button onClick={rewind}>RWD</button>
+						</picture>
+
 						<picture className="play_button" width="144px" height="144px">
 							<button onClick={playerManager}>
 								<img src={btnPlayback} alt="Play Pause button" />
 							</button>
+						</picture>
+
+						<picture className="ff_button" width="144" height="144">
+							<button onClick={fastForward}>FF</button>
 						</picture>
 
 						<ul className="signal_switch">

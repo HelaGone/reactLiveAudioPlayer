@@ -29,6 +29,8 @@ a{text-decoration: none;color:inherit;}
 
 .signal_switch .signal_item.signal_selected button{color:#ff8a50;}
 
+.rwd_button, .ff_button{border:1px solid black;}
+
 @media screen and (min-width:360px){
 	.f_container .f_caption{padding:24px 0;}
 }

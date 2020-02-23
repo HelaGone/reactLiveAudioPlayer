@@ -82,6 +82,20 @@ class App extends Component{
     }
   }
 
+  fastForward = ()=>{
+    if(this.player !== null){
+      this.player.currentTime = this.player.currentTime + 30;
+      console.log(this.player.currentTime );
+    }
+  }
+
+  rewind = () => {
+    if(this.player !== null){
+      this.player.currentTime = this.player.currentTime - 10;
+      console.log(this.player.currentTime );
+    }
+  }
+
   switchSignal = (isLive)=>{
     this.player.pause();
     this.setState({
@@ -152,6 +166,8 @@ class App extends Component{
           switchSignal={switchSignal}
           playerManager={playerManager}
           isLive={isLive}
+          fastForward={this.fastForward}
+          rewind={this.rewind}
           playerStatus={playerStatus} />
       </Fragment>
     );
