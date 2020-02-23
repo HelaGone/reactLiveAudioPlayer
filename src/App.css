@@ -18,7 +18,9 @@ a{text-decoration: none;color:inherit;}
 
 .bottom_wrapper{position: absolute;bottom:24px;left:0;right:0;text-align: center;}
 /*.play_button{position: relative;left: 50%;margin-left: -43px;}*/
-.play_button img{border-radius: 50%; box-shadow: 4px 4px 8px #000;width:72px;height: 72px;background-color: #000a12;}
+.play_button img{border-radius: 50%; box-shadow: 1px 3px 12px #000;width:72px;height: 72px;background-color: #000a12;}
+.transport_control{padding:16px;}
+.transport_control img{border-radius: 50%; box-shadow: 1px 3px 9px #000;width:36px;height: 36px;background-color: #fff;}
 
 .social_buttons, .signal_switch{display: flex;flex-direction: row; justify-content: center;align-items: center;}
 .social_buttons .social_item{margin:0 8px;background-color: #000a12;padding:4px;border-radius: 5px;}

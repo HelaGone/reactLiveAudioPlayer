@@ -85,24 +85,20 @@ class App extends Component{
   fastForward = ()=>{
     if(this.player !== null){
       this.player.currentTime = this.player.currentTime + 30;
-      console.log(this.player.currentTime );
     }
   }
 
   rewind = () => {
     if(this.player !== null){
       this.player.currentTime = this.player.currentTime - 10;
-      console.log(this.player.currentTime );
     }
   }
 
   switchSignal = (isLive)=>{
     this.player.pause();
-    this.setState({
-      playerStatus: "paused"
-    });
+    this.setState({playerStatus: "paused"});
+
     if(isLive){
-      // this.getRadioTitle();
       this.setState({
         signal: "http://s2.voscast.com:8162/;&type=mp3",
         isLive: true
@@ -113,6 +109,7 @@ class App extends Component{
       const dirtyTitle = (this.state.archivo) ? decodeURI(this.state.archivo[randomIndex]).match(patt)[0] : null;
       const songTitle = dirtyTitle.replace("https://firebasestorage.googleapis.com/v0/b/nofmradio.appspot.com/o/", "");
       const onDemandTrack = this.state.archivo[randomIndex];
+      this.player.currentTime = 0;
       this.setState({
         isLive: false,
         signal: onDemandTrack,
