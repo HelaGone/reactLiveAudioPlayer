@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import './App.css';
 import Home from './components/Home';
 import firebase from './firebase';
-import '@firebase/storage';
 
 class App extends Component{
 
