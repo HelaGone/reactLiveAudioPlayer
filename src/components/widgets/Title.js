@@ -22,7 +22,8 @@ const Title = () => {
   }, []);
 
   return(
-    <h1 className="f_title">{decodeHtmlEntities(title)}</h1>
+    // <h1 className="f_title">{decodeHtmlEntities(title)}</h1>
+    <script type="text/javascript" src="//cdn.voscast.com/stats/display.js?key=d3b9d948ce2a095ad198b852a44fa999&stats=songtitle"></script>
   );
 }
 

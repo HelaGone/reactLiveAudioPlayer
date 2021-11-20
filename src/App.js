@@ -1,46 +1,33 @@
 import React, {Component, Fragment} from 'react';
 import './App.css';
 import Home from './components/Home';
-import firebase from './firebase';
+import firebaseApp from './firebase';
+import {getStorage, ref, listAll, getDownloadURL} from 'firebase/storage';
+
+const signal = "https://s2.voscast.com:8163/stream";
+// const signal = "http://s2.voscast.com:8162/;&type=mp3";
 
 class App extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-      signal: "http://s2.voscast.com:8162/;&type=mp3",
+      signal: signal,
       isLive:true,
       signalTitle:"NoFM",
       playerStatus: "stopped",
       playerManager: this.playerManager,
       switchSignal: this.switchSignal,
-      archivo: []
+      archivo: ["default"]
     }
   }
 
   componentDidMount(){
-    // this.getRadioTitle();
     this.getArchiveFiles();
   }
 
   test = ()=>{
     console.log("test");
-  }
-
-  getRadioTitle = (url = "https://nofm-radio.com/wp-json/react/v2/radio/") =>{
-    fetch(url)
-    .then(response => response.json())
-    .then(data=>{
-      const {title} = data;
-      this.setState({
-        signalTitle: title,
-      });
-      return title;
-    })
-    .catch(err => {
-      console.error("Error: ", err)
-      return "Failed"
-    });
   }
 
   componentDidUpdate(prevProps, prevState){
@@ -99,7 +86,7 @@ class App extends Component{
 
     if(isLive){
       this.setState({
-        signal: "http://s2.voscast.com:8162/;&type=mp3",
+        signal: "https://s2.voscast.com:8163/stream",
         isLive: true
       });
     }else{
@@ -119,33 +106,32 @@ class App extends Component{
 
 
   getArchiveFiles = ()=>{
-    const storage = firebase.storage();
+    const storage = getStorage(firebaseApp, "gs://nofmradio.appspot.com/");
+    // console.log(storage);
+    const listRef = ref(storage);
+    // console.log(listRef);
     let archivo = [];
-    let listRef = storage.refFromURL("gs://nofmradio.appspot.com/");
+    // let listRef = storage.refFromURL("gs://nofmradio.appspot.com/");
 
-    listRef.listAll().then(function(res){
-
-      res.prefixes.forEach(function(folderRef){
-        //console.log("Folder ref: ", folderRef);
-      });
-
-      res.items.forEach(function(itemRef){
-        listRef.child(itemRef.location.path).getDownloadURL().then(function(url){
-          // console.log(url);
-          archivo.push(url);
-        }).catch(function(err){
-          console.error(err);
+    listAll(listRef)
+      .then((res)=>{
+        res.items.forEach((itemRef)=>{
+          let itemPath = itemRef._location.path_;
+          getDownloadURL(ref(storage, itemPath))
+            .then( url => {
+              archivo.push(url);
+          }).catch((err)=>{
+            console.error(err);
+          });
         });
-
+      }).catch((error)=>{
+        console.error(error);
       });
-
-    }).catch(function(error){
-      console.error(error);
-    });
 
     this.setState({
       archivo: archivo
     });
+
   }
 
   render(){
